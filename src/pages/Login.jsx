@@ -26,6 +26,7 @@ function Login() {
         localStorage.setItem('token', data.token);
         localStorage.setItem('refreshToken', data.refreshToken);
         console.log('Inicio de sesión exitoso');
+        navigate('/Dashboard'); // Redirige a una página segura
       } else {
         setError(data.message);
       }
