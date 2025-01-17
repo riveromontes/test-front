@@ -9,7 +9,7 @@ export const renewToken = async () => {
     if (!refreshToken) return;
   
     try {
-      const response = await fetch('http://localhost:5000/api/refresh-token', {
+      const response = await fetch('http://localhost:5000/api/auth/refresh-token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

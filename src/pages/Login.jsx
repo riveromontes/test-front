@@ -13,7 +13,7 @@ function Login() {
     e.preventDefault();
     
     try {
-      const response = await apiClient('http://localhost:5000/api/login', {
+      const response = await apiClient('http://localhost:5000/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -21,25 +21,28 @@ function Login() {
         body: JSON.stringify({ username, password }),
       });
 
-
+      const data = await response.json();
+      console.log(response);
       if (response.ok) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('refreshToken', data.refreshToken);
         console.log('Inicio de sesión exitoso');
-        navigate('/Dashboard'); // Redirige a una página segura
+        navigate('/dashboard'); // Redirige a una página segura
       } else {
+        console.log('Error del Else');
         setError(data.message);
       }
     
 
 
-      const data = await response.json();
+      
       
       localStorage.setItem('token', data.token);
       localStorage.setItem('refreshToken', data.refreshToken);
-      console.log('Inicio de sesión exitoso');
+      
     } catch (error) {
-    setError(error.message);
+      console.log('Error del Catch');
+      setError(error.message);
     }
 
   };
